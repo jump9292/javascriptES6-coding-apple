@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div></div>
+</body>
+</html>
+<script> 
+    var person = {
+        인사: function(){
+            console.log(this.name) + '안녕';
+        }
+    }
+    var person2 = {
+        name : '손흥민'
+    }
+    person.인사.apply(person2, [1,2])
+    person.인사.call(person2, 1, 2)
+    
+    
+//    function 더하기(a,b,c){
+//        console.log(a+b+c)
+//    }
+//    var array = [10,20,30]
+//    더하기(...array)
+//    더하기.apply(undefined, array) , undefined가 Object가 아니면 실행, 편법
+    
+//    var o1 = {a:1, b:2}
+//    var o2 = {a:2, ...o1}
+//    console.log(o2) //값중복이 발생한다.
+    
+//    var o1 = {a:1, b:2}
+//    var o2 = {...o1, c:3}
+//    console.log(o2) //중괄호 제거
+    
+    //reference data type Array, Object
+//    var a = [1,2,3]
+//    var b = a;
+//    var c = [...a] //독립적인 값이 복사된다.
+//    a[3] = 4;
+//    console.log(a)
+//    console.log(b) //값을 공유한다.
+//    console.log(c) //독립적인 값
+    
+    //Deep copy, spread operator
+//    var a = [1,2,3]
+//    var b = [4,5]
+//    var c = [...a, ...b]
+//    console.log(c)
+    
+    
+//    var array = ['hello', 'world']
+//    console.log(...array); //대관호 제거
+//    
+//    var 문자 = 'hello'; //...spread operator
+//    console.log(...문자);
+//    console.log(문자[0])
+    
+//    var pants = 0;
+//    var socks = 100; 
+//    
+//    `바지${pants} 양말${socks};`
+//    
+//    function 해체분석기(글자들, 변수들1, 변수들2){
+//        if(변수들1 === 0)
+//        console.log(`바지다팔렸어요. 양말`+ 변수들2) //문자조작이 쉽다.
+//    }
+//    
+//    해체분석기`바지${pants} 양말${socks}`
+    
+    
+//    var pants = 20;
+//    var socks = 100; 
+//    
+//    `바지${pants} 양말${socks};`
+//    
+//    function 해체분석기(문자들, 변수들1, 변수들2){
+//        console.log(문자들[1] + 변수들2 +', ' + 문자들[0] + 변수들1)
+//    }
+//    
+//    해체분석기`바지${pants} 양말${socks}`
+    
+    
+//    var 변수 = '손흥민';
+//    var 문자 = `안녕하세요 저는 ${변수}`;
+//    var 템플릿 = `<div>${변수}</div>`;
+    
+//    function 함수(){// //tagged literal
+//        return 10
+//    }
+//    console.log(함수`안녕하세요 ${변수} 입니다.`)
+
+    
+//    func?tion 해체분석기(문자들, 변수들, 변수들02){ //tagged literal
+//        console.log(문자들)
+//        console.log(변수들)
+//        console.log(문자들[1]+ 변수들 + 문자들[0])
+//    }
+//    해체분석기`안녕하세요 ${변수}입니다.`
+    
+//    var 버튼들 = document.querySelectorAll('button');
+//    var 모달창들 = document.querySelectorAll('div');
+    
+//    버튼들[0].addEventListener('click', function(){
+//        모달창들[0].style.display = 'block';
+//    });
+//    버튼들[1].addEventListener('click', function(){
+//        모달창들[1].style.display = 'block';
+//    });
+//    버튼들[2].addEventListener('click', function(){
+//        모달창들[2].style.display = 'block';
+//    })
+
+    //이벤트리스너 반복시키기
+//    for(let i = 0; i < 3; i++){ //var => let으로 변경한다.
+//        버튼들[i].addEventListener('click', () => {
+//            모달창들[i].style.display = 'block'; 
+//            //변수가 나중에 채워진다. 전역변수 var i => 3이다.
+//        });        
+//    }
+    //1. 반복문 내 코드 3번 돌림
+    //2. 근데 이벤트리스너 내부 코드는 나중에 실행함
+    //3. 좀 있다가 버튼을 클릭하면 내부코드 실행함
+    //4. 반복문이 탐색하는 시점하고 클릭이벤트가 실행되는 시점이 달라서 발생하는 오류
+    
+//함수(); 호이스팅되서 실행된다, 정의되지 않았다.
+//function fu(){
+//    console.log(안녕); 
+    //빈공간, var 호이스팅 시 undefined 할당된다.
+    //let, const Hoisting 시 undefined 할당되지 않음.
+    //temporal deadzone? uninitialized라고 부름 호이스팅되고 끗;
+//    let 안녕 = 'hello!'
+//}
+//=> Uncaught TypeError: 함수 is not a function
+
+//    함수(); //var 함수: 선언부분만 호이스팅 된다.
+//    var 함수 = function(){
+//        console.log(안녕)
+//        var 안녕 = 'Hello!';
+//    }
+//    Uncaught TypeError: 함수 is not a function
+
+//   let a  = 1;
+//    var 함수  = function() {
+//        a = 2;
+//    }
+    //함수가 실행되지 않았다.
+    //함수();
+//    console.log(a);
+//    => 1
+    
+//    let a = 1; , 나랑 가장 가까운 범위
+//    var b = 2; //4 => window.b , 전역변수
+//    window.a = 3;
+//    window.b = 4; //재선언, 재할당
+//    
+//    console.log(a);
+//    console.log(b);
+//    console.log(window.a);
+//    console.log(window.b);
+//    console.log(a+b);
+    
+//    var i = 5; //반복문이 다 실행되고 전역변수로 남아있음, let으로 변경한다. 
+    //
+    
+//    for(let i = 1; i < 6; i++){
+//        setTimeout(function(){console.log(i);}, i*1000)
+//    }
+    
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

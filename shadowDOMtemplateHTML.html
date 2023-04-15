@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello, world!</title>
+</head>
+<body>
+
+<!--<input type="range">-->
+<div id="mordor"></div>
+<script>
+    //쌩코딩이 더 빠를듯 저런거 왜씀, 간지
+    document.querySelector('#mordor').attachShadow({mode:'open'})
+    document.querySelector('#mordor').shadowRoot.innerHTML =
+        '<p>심연에서 왔도다</p>'
+    //shadowRoot
+    //<숨길html1>
+    //<숨길html2>
+</script>
+
+</body>
+</html>

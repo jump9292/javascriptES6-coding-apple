@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>custom-input</title>
+</head>
+<body>
+<label>ddddddddddddddddddd</label>
+<custom-input name="12345"></custom-input>
+<!--    HTML 임시보관함-->
+<template id="template1">
+    <label>이메일인풋이에요</label><input>
+    <style>label{color: red}</style>
+</template>
+<!--<custom-input name="이메일"></custom-input>-->
+<script>
+    //1. Web Components 기능 쉽게 쓸 수 있게 도와주는 Lit, Stencil 등이 있다.
+    //2. shadow DOM과 template으로 HTML 모듈화하기
+    class 클랙스 extends HTMLElement{ //함수문법, 재사용
+        connectedCallback(){ //정해져있는
+            // this <== custom-input
+            this.attachShadow({mode:'open'})
+            this.shadowRoot.append(template1.content.cloneNode(true))
+            let el = this.shadowRoot.querySelector('label')
+            //shadow DOM에 이벤트리스너도 부착가능
+            el.addEventListener('click', function() {
+                console.log('클릭함')
+            })
+            // this.shadowRoot.innerHTML = `
+            //  <label>이메일인풋이에요</label><input>
+            //  <style>label{color: red}</style>
+            // `
+            // document.createElement('label')
+            // this.appendChild(변수)
+            //10배 느리다.
+            // this.innerHTML = `<label>이메일인풋이에요</label><input>
+            // <style>label{color: red}</style>
+            // `
+            // let name = this.getAttribute('name');
+            // this.innerHTML = `<label>${name}이메일인풋이에요</label><input>`
+        }
+
+        static get observedAttributes() {
+            return ['name']
+        }
+        attributeChangedCallback(){
+            // console.log(this.getAttribute('name'))
+            this.innerHTML = `<label>이메일인풋이에요.</label><input>`
+            //React, Vue와 비슷한 재렌더링 기능구현 방법임
+        }
+    }
+  customElements.define('custom-input', 클랙스)
+</script>
+
+</body>
+</html>

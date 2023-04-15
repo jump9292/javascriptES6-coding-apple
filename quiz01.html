@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+</head>
+<body>
+<!--<img id="test" src="https://thumb.mtstarnews.com/06/2023/03/2023032009435152362_11.jpg">-->
+<script>
+
+    var 프로미스 = ajax해주는함수('https://codingapple1.github.io/hello.txt');
+
+    프로미스.then((결과) => {
+        console.log(결과) //첫번째 인사말
+        return ajax해주는함수('https://codingapple1.github.io/hello2.txt');
+    }).then((결과) => {
+        console.log(결과) //두번째 인사말
+    })
+
+    function ajax해주는함수(URL) {
+        return new Promise((성공, 실패)=>{
+            $.get(URL) //get요청
+                .done(function (결과) { //Ajax 요철 결과(인삿말)
+                    성공(결과);
+                });
+        }); //hello2.txt
+    }
+
+    // var 이미지로딩 = new Promise(function(resolve, reject){
+    //     var img = document.querySelector('#test');
+    //     img.addEventListener('load', function() {
+    //         resolve();
+    //     })
+    //
+    //     img.addEventListener('error', function() {
+    //         reject();
+    //     })
+    // })
+    //
+    // 이미지로딩.then(function() {
+    //     console.log('로딩성공')
+    // }).catch(function () {
+    //     console.log('로딩실패')
+    // })
+
+</script>
+
+</body>
+
+</html>
