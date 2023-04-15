@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<button id="button">ddd</button>
+</body>
+<script>
+  //순차적으로 많은 걸 실행할 때 유용
+  async function 더하기(){
+    var 프로미스  = new Promise(function(resolve, reject){
+      document.getElementById('button').addEventListener('click', function() {
+          resolve('성공했어요.');
+      })
+    })
+
+    var 결과 = await 프로미스;
+    console.log(결과)
+  }
+
+  더하기();
+</script>
+</html>
